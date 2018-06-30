@@ -1,9 +1,18 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-import App from './App';
+import { shallow } from 'enzyme';
 
-it('renders without crashing', () => {
-    const div = document.createElement('div');
-    ReactDOM.render(<App/>, div);
-    ReactDOM.unmountComponentAtNode(div);
+import App from './App';
+import GoalAdd from './GoalAdd';
+
+describe('App', () => {
+    it('renders without crashing', () => {
+        const appWrapper = shallow(<App/>);
+        const goalAdd = appWrapper.find(GoalAdd);
+        expect(goalAdd).toHaveLength(1);
+    });
+
+    it('has expected initial state', () => {
+        const appWrapper = shallow(<App/>);
+
+    });
 });
