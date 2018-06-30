@@ -5,6 +5,7 @@ export default class GoalAdd extends Component {
         return (
             <div>
                 <p>Add a goal</p>
+                <input name="goal"/>
             </div>
         )
     }
