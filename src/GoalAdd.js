@@ -22,8 +22,11 @@ export default class GoalAdd extends Component {
                 <p>Add a goal</p>
                 <input onChange={this.onChange}
                        name="goal"
-                value={this.state.goal}/>
-                <button>Save Goal</button>
+                       value={this.state.goal}/>
+                <button name="save"
+                        onClick={() => this.props.onSave(this.state)}>
+                    Save Goal
+                </button>
             </div>
         )
     }

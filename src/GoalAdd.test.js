@@ -1,5 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
+import sinon from 'sinon';
 
 import GoalAdd from './GoalAdd';
 
@@ -24,4 +25,20 @@ describe('GoalAdd', () => {
         // Assert
         expect(goalAddWrapper.find({value: 'I weigh 58 kilos'})).toHaveLength(1);
     });
+
+    it('should save the new goal', () => {
+        // Setup
+        const onSave = sinon.spy();
+        const goalAddWrapper = shallow(<GoalAdd onSave={onSave}/>);
+        const expected = {goal: 'I weigh 58 kilos'};
+        goalAddWrapper.setState({goal: 'I weigh 58 kilos'});
+
+        // Exercise
+        goalAddWrapper.find({name: 'save'}).simulate('click');
+
+        // Assert
+        expect(onSave.calledOnce).toBe(true);
+        expect(onSave.calledWith(expected)).toBe(true);
+    });
+
 });
