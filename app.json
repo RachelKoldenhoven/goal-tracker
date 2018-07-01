@@ -1,0 +1,39 @@
+{
+  "name": "goal-tracker",
+  "scripts": {
+    "test": "./gradlew --full-stacktrace --debug test"
+  },
+  "env": {
+  },
+  "formation": {
+    "web": {
+      "quantity": 1
+    }
+  },
+  "image": "jhoglin/gradle-node",
+  "addons": [
+  ],
+  "buildpacks": [
+    {
+      "url": "heroku/gradle"
+    }
+  ],
+  "environments": {
+    "test": {
+      "addons": [
+        "cleardb:ignite"
+      ],
+      "buildpacks": [
+        {
+          "url": "heroku/gradle"
+        },
+        {
+          "url": "https://github.com/heroku/heroku-buildpack-google-chrome"
+        },
+        {
+          "url": "https://github.com/heroku/heroku-buildpack-chromedriver"
+        }
+      ]
+    }
+  }
+}
