@@ -27,7 +27,8 @@ repositories {
 }
 
 node {
-    download = false
+    download = true
+    version = "10.4.0"
     npmWorkDir = file("${project.buildDir}/npm")
     nodeModulesDir = file("${project.projectDir}/client")
 }
