@@ -24,7 +24,7 @@ export default class GoalAdd extends Component {
                        name="goal"
                        value={this.state.goal}/>
                 <button name="save"
-                        onClick={() => this.props.onSave(this.state)}>
+                        onClick={() => this.props.onSave(this.state.goal)}>
                     Save Goal
                 </button>
             </div>

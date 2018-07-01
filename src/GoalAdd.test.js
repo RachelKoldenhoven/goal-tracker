@@ -30,7 +30,7 @@ describe('GoalAdd', () => {
         // Setup
         const onSave = sinon.spy();
         const goalAddWrapper = shallow(<GoalAdd onSave={onSave}/>);
-        const expected = {goal: 'I weigh 58 kilos'};
+        const expected = 'I weigh 58 kilos';
         goalAddWrapper.setState({goal: 'I weigh 58 kilos'});
 
         // Exercise

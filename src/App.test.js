@@ -48,15 +48,13 @@ describe('App', () => {
 
     it('saves a new goal and change view to GoalList', () => {
         const appWrapper = shallow(<App/>);
-        const expected = {goal: 'I weigh 58 kilos'};
-        appWrapper.setState({view: 'GoalAdd'});
+        const expected = ['I weigh 58 kilos'];
 
         appWrapper.instance().saveNewGoal(expected);
         appWrapper.update();
-        const goalList = appWrapper.find(GoalList);
 
         expect(appWrapper.state().view).toEqual('GoalList');
-        expect(goalList.props().goals).toContainEqual(expected);
+        expect(appWrapper.state().goals).toContainEqual(expected);
     });
 
 });

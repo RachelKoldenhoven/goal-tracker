@@ -8,9 +8,9 @@ import GoalList from './GoalList';
 describe('GoalList', () => {
     it('should render a list of goals', () => {
         const expected = [
-                'I weigh 58 kilos',
-                'I run 10k in less than one hour'
-            ];
+            'I weigh 58 kilos',
+            'I run 10k in less than one hour'
+        ];
         const goalListWrapper = shallow(<GoalList goals={expected}/>);
 
         expect(goalListWrapper.find('li')).toHaveLength(2);
