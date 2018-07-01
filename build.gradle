@@ -9,6 +9,9 @@ buildscript {
 		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
 	}
 }
+plugins {
+	id "com.moowork.node" version "1.2.0"
+}
 
 apply plugin: 'java'
 apply plugin: 'eclipse'
@@ -23,7 +26,18 @@ repositories {
 	mavenCentral()
 }
 
+node {
+    download = false
+    npmWorkDir = file("${project.buildDir}/npm")
+    nodeModulesDir = file("${project.projectDir}/client")
+}
 
+task copyResources(type: Copy) {
+    from 'client/build/' into 'src/main/resources/static'
+}
+copyResources.dependsOn npm_run_build
+test.outputs.upToDateWhen {false}
+processResources.dependsOn copyResources
 dependencies {
 	compile('org.springframework.boot:spring-boot-starter-web')
 	testCompile('org.springframework.boot:spring-boot-starter-test')

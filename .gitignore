@@ -7,7 +7,7 @@ node_modules/
 /coverage
 
 # production
-/build
+build/
 
 # misc
 .DS_Store
@@ -30,3 +30,4 @@ dataSources/
 
 .gradle/
 out/
+src/main/resources/static/
