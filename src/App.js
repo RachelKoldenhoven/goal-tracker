@@ -9,16 +9,31 @@ class App extends Component {
         super(props);
 
         this.state = {
-            view: 'GoalAdd',
+            view: 'GoalList',
             goals: []
         }
     }
+
+    onAdd = () => {
+        super.setState({view: 'GoalAdd'});
+    };
 
     saveNewGoal = (goal) => {
         const newState = JSON.parse(JSON.stringify(this.state));
         newState.view = 'GoalList';
         newState.goals.push(goal);
-        this.setState(newState);    };
+        this.setState(newState);
+    };
+
+    get currentView() {
+        if (this.state.view === 'GoalAdd') {
+            return <GoalAdd onSave={this.saveNewGoal}/>
+        } else {
+            return <GoalList
+                goals={this.state.goals}
+                onAdd={this.onAdd}/>
+        }
+    }
 
     render() {
         return (
@@ -26,8 +41,7 @@ class App extends Component {
                 <header className="App-header">
                     <h1>Welcome to Rachel's Goal Tracker</h1>
                 </header>
-                <GoalAdd onSave={this.saveNewGoal}></GoalAdd>
-                <GoalList goals={this.state.goals}/>
+                {this.currentView}
             </div>
         );
     }
