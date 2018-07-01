@@ -1,5 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
+import fetchMock from 'fetch-mock';
 
 import App from './App';
 import GoalAdd from './GoalAdd';
@@ -7,6 +8,8 @@ import GoalList from './GoalList';
 
 describe('App', () => {
     it('renders without crashing', () => {
+        const goals = ['goal 1', 'goal 2'];
+        fetchMock.get('/api/goals', goals);
         const appWrapper = shallow(<App/>);
         const goalList = appWrapper.find(GoalList);
         expect(goalList).toHaveLength(1);
@@ -48,9 +51,10 @@ describe('App', () => {
 
     it('saves a new goal and change view to GoalList', () => {
         const appWrapper = shallow(<App/>);
-        const expected = ['I weigh 58 kilos'];
+        const expected = {name: 'I weigh 58 kilos'};
+        const newGoal = 'I weigh 58 kilos';
 
-        appWrapper.instance().saveNewGoal(expected);
+        appWrapper.instance().saveNewGoal(newGoal);
         appWrapper.update();
 
         expect(appWrapper.state().view).toEqual('GoalList');

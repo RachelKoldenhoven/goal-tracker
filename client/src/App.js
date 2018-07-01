@@ -14,6 +14,16 @@ class App extends Component {
         }
     }
 
+    componentDidMount() {
+        this.fetchGoals();
+    }
+
+    async fetchGoals() {
+        const request = await fetch('/api/goals');
+        const goals = await request.json();
+        super.setState({goals});
+    };
+
     onAdd = () => {
         super.setState({view: 'GoalAdd'});
     };
@@ -21,7 +31,7 @@ class App extends Component {
     saveNewGoal = (goal) => {
         const newState = JSON.parse(JSON.stringify(this.state));
         newState.view = 'GoalList';
-        newState.goals.push(goal);
+        newState.goals.push({name: goal});
         this.setState(newState);
     };
 

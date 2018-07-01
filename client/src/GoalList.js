@@ -4,7 +4,7 @@ export default class GoalList extends Component {
 
     get goals() {
         return this.props.goals.map(goal => {
-            return <li key={goal}>{goal}</li>
+            return <li key={goal.name}>{goal.name}</li>
         });
     }
 

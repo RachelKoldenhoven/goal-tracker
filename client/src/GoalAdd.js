@@ -5,7 +5,7 @@ export default class GoalAdd extends Component {
         super(props);
 
         this.state = {
-            goal: ''
+                name: ''
         }
     }
 
@@ -21,10 +21,10 @@ export default class GoalAdd extends Component {
             <div>
                 <p>Add a goal</p>
                 <input onChange={this.onChange}
-                       name="goal"
-                       value={this.state.goal}/>
+                       name="name"
+                       value={this.state.name}/>
                 <button name="save"
-                        onClick={() => this.props.onSave(this.state.goal)}>
+                        onClick={() => this.props.onSave(this.state.name)}>
                     Save Goal
                 </button>
             </div>

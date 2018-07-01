@@ -8,8 +8,8 @@ import GoalList from './GoalList';
 describe('GoalList', () => {
     it('should render a list of goals', () => {
         const expected = [
-            'I weigh 58 kilos',
-            'I run 10k in less than one hour'
+            {name: 'I weigh 58 kilos'},
+            {name: 'I run 10k in less than one hour'}
         ];
         const goalListWrapper = shallow(<GoalList goals={expected}/>);
 
@@ -19,8 +19,8 @@ describe('GoalList', () => {
 
     it('should calls onAdd when add btn is clicked', () => {
         const expected = [
-            'I weigh 58 kilos',
-            'I run 10k in less than one hour'
+            {name: 'I weigh 58 kilos'},
+            {name: 'I run 10k in less than one hour'}
         ];
         const onAdd = sinon.spy();
         const goalListWrapper = shallow(<GoalList onAdd={onAdd} goals={expected}/>);
