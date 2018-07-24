@@ -28,16 +28,27 @@ class App extends Component {
         super.setState({view: 'GoalAdd'});
     };
 
-    saveNewGoal = (goal) => {
-        const newState = JSON.parse(JSON.stringify(this.state));
-        newState.view = 'GoalList';
-        newState.goals.push({name: goal});
-        this.setState(newState);
+    viewList = () => {
+        super.setState({view: 'GoalList'});
+    };
+
+    async saveNewGoal(goal) {
+        const newGoal = {name: goal};
+        await fetch('api/goals', {
+            method: 'POST',
+            body: JSON.stringify(newGoal),
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json',
+            }
+        });
+        this.fetchGoals();
+        this.viewList();
     };
 
     get currentView() {
         if (this.state.view === 'GoalAdd') {
-            return <GoalAdd onSave={this.saveNewGoal}/>
+            return <GoalAdd onSave={(goal) => this.saveNewGoal(goal)}/>
         } else {
             return <GoalList
                 goals={this.state.goals}
