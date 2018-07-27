@@ -13,3 +13,9 @@ export const gotGoals = (goals) => {
         goals
     }
 };
+
+export const onAdd = () => {
+    return {
+        type: 'NAV_ADD_GOAL'
+    }
+};

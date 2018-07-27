@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 
+import {onAdd} from './mainActions';
+
 class GoalList extends Component {
 
     get goals() {
@@ -27,4 +29,10 @@ const mapStateToProps = (state) => {
     }
 };
 
-export default connect(mapStateToProps)(GoalList);
+const mapDispatchToProps = (dispatch) => {
+    return {
+        onAdd: () => dispatch(onAdd())
+    }
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(GoalList);

@@ -7,21 +7,10 @@ import GoalAdd from './GoalAdd';
 import GoalList from './GoalList';
 
 class App extends Component {
-    constructor(props) {
-        super(props);
-
-        this.state = {
-            view: 'GoalList'
-        }
-    }
 
     componentDidMount() {
         this.props.getGoals();
     }
-
-    onAdd = () => {
-        super.setState({view: 'GoalAdd'});
-    };
 
     viewList = () => {
         super.setState({view: 'GoalList'});
@@ -37,16 +26,15 @@ class App extends Component {
                 'Accept': 'application/json',
             }
         });
-        this.fetchGoals();
+        this.props.getGoals();
         this.viewList();
     };
 
     get currentView() {
-        if (this.state.view === 'GoalAdd') {
+        if (this.props.view === 'GoalAdd') {
             return <GoalAdd onSave={(goal) => this.saveNewGoal(goal)}/>
         } else {
-            return <GoalList
-                onAdd={this.onAdd}/>
+            return <GoalList/>
         }
     }
 
@@ -63,7 +51,9 @@ class App extends Component {
 }
 
 const mapStateToProps = (state) => {
-
+    return {
+        'view': state.view
+    }
 };
 
 const mapDispatchToProps = (dispatch) => {

@@ -8,7 +8,8 @@ import './index.css';
 import App from './App';
 
 const initialState = {
-    goals: []
+    goals: [],
+    view: 'GoalList'
 };
 
 const reducer = (state = initialState, action) => {
@@ -16,6 +17,8 @@ const reducer = (state = initialState, action) => {
     switch (action.type) {
         case 'GOT_GOALS':
             return {...state, goals: action.goals};
+        case 'NAV_ADD_GOAL':
+            return {...state, view: 'GoalAdd'};
         default:
             return state;
     }
