@@ -1,6 +1,9 @@
 import React, {Component} from 'react';
+import {connect} from 'react-redux';
 
-export default class GoalAdd extends Component {
+import {saveGoal} from './mainActions';
+
+class GoalAdd extends Component {
     constructor(props) {
         super(props);
 
@@ -16,6 +19,13 @@ export default class GoalAdd extends Component {
         this.setState({...this.state, [name]: value});
     };
 
+    onSave = (goalName) => {
+        const goal = {
+            name: goalName
+        };
+        this.props.saveGoal(goal);
+    };
+
     render() {
         return (
             <div>
@@ -24,10 +34,22 @@ export default class GoalAdd extends Component {
                        name="name"
                        value={this.state.name}/>
                 <button name="save"
-                        onClick={() => this.props.onSave(this.state.name)}>
+                        onClick={() => this.onSave(this.state.name)}>
                     Save Goal
                 </button>
             </div>
         )
     }
 }
+
+const mapStateToProps = (state) => {
+
+};
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        saveGoal: (goal) => dispatch(saveGoal(goal))
+    }
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(GoalAdd);

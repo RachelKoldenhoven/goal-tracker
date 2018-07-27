@@ -12,27 +12,9 @@ class App extends Component {
         this.props.getGoals();
     }
 
-    viewList = () => {
-        super.setState({view: 'GoalList'});
-    };
-
-    async saveNewGoal(goal) {
-        const newGoal = {name: goal};
-        await fetch('api/goals', {
-            method: 'POST',
-            body: JSON.stringify(newGoal),
-            headers: {
-                'Content-Type': 'application/json',
-                'Accept': 'application/json',
-            }
-        });
-        this.props.getGoals();
-        this.viewList();
-    };
-
     get currentView() {
         if (this.props.view === 'GoalAdd') {
-            return <GoalAdd onSave={(goal) => this.saveNewGoal(goal)}/>
+            return <GoalAdd/>
         } else {
             return <GoalList/>
         }

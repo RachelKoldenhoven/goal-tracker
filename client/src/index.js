@@ -19,6 +19,8 @@ const reducer = (state = initialState, action) => {
             return {...state, goals: action.goals};
         case 'NAV_ADD_GOAL':
             return {...state, view: 'GoalAdd'};
+        case 'NAV_GOAL_LIST':
+            return {...state, view: 'GoalList'};
         default:
             return state;
     }

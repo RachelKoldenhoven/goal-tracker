@@ -19,3 +19,24 @@ export const onAdd = () => {
         type: 'NAV_ADD_GOAL'
     }
 };
+
+export const navGoalList = () => {
+  return {
+      type: 'NAV_GOAL_LIST'
+  }
+};
+
+export const saveGoal = (goal) => {
+    return async (dispatch) => {
+        await fetch('api/goals', {
+            method: 'POST',
+            body: JSON.stringify(goal),
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json',
+            }
+        });
+        dispatch(getGoals());
+        dispatch(navGoalList());
+    }
+};
