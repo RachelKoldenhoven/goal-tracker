@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
+import {connect} from 'react-redux';
 
 import './App.css';
+import {getGoals} from './mainActions';
 import GoalAdd from './GoalAdd';
 import GoalList from './GoalList';
 
@@ -9,20 +11,13 @@ class App extends Component {
         super(props);
 
         this.state = {
-            view: 'GoalList',
-            goals: []
+            view: 'GoalList'
         }
     }
 
     componentDidMount() {
-        this.fetchGoals();
+        this.props.getGoals();
     }
-
-    async fetchGoals() {
-        const request = await fetch('/api/goals');
-        const goals = await request.json();
-        super.setState({goals});
-    };
 
     onAdd = () => {
         super.setState({view: 'GoalAdd'});
@@ -67,4 +62,14 @@ class App extends Component {
     }
 }
 
-export default App;
+const mapStateToProps = (state) => {
+
+};
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        getGoals: () => dispatch(getGoals())
+    }
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);
