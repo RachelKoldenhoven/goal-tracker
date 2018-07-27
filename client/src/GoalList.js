@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
+import {connect} from 'react-redux';
 
-export default class GoalList extends Component {
+class GoalList extends Component {
 
     get goals() {
         return this.props.goals.map(goal => {
@@ -19,3 +20,5 @@ export default class GoalList extends Component {
     }
 
 }
+
+export default connect()(GoalList);
