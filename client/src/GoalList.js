@@ -21,4 +21,10 @@ class GoalList extends Component {
 
 }
 
-export default connect()(GoalList);
+const mapStateToProps = (state) => {
+    return {
+        'goals': state.goals
+    }
+};
+
+export default connect(mapStateToProps)(GoalList);

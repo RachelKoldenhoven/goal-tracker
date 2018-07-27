@@ -51,7 +51,6 @@ class App extends Component {
             return <GoalAdd onSave={(goal) => this.saveNewGoal(goal)}/>
         } else {
             return <GoalList
-                goals={this.state.goals}
                 onAdd={this.onAdd}/>
         }
     }
