@@ -1,33 +1,31 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import {Provider} from 'react-redux';
-import {createStore, applyMiddleware} from 'redux';
+import {createStore, applyMiddleware, combineReducers} from 'redux';
 import thunk from 'redux-thunk';
+import {
+    createBrowserHistory,
+    routerReducer,
+    routerMiddleware as createRouterMiddleware,
+    startListener,
+    push
+} from 'redux-first-routing'
 
 import './index.css';
 import App from './App';
+import goalReducer from './reducers/goalReducer';
 
-const initialState = {
-    goals: [],
-    view: 'GoalList'
-};
 
-const reducer = (state = initialState, action) => {
-    console.log('reducer', state, action);
-    switch (action.type) {
-        case 'GOT_GOALS':
-            return {...state, goals: action.goals};
-        case 'NAV_ADD_GOAL':
-            return {...state, view: 'GoalAdd'};
-        case 'NAV_GOAL_LIST':
-            return {...state, view: 'GoalList'};
-        default:
-            return state;
-    }
-};
+const history = createBrowserHistory();
 
-const middleware = applyMiddleware(thunk);
-const store = createStore(reducer, middleware);
+const rootReducer = combineReducers({
+    router: routerReducer,
+    goal: goalReducer
+});
+
+const routerMiddleware = createRouterMiddleware(history);
+const store = createStore(rootReducer, applyMiddleware(thunk, routerMiddleware));
+startListener(history, store);
 
 ReactDOM.render(
     <Provider store={store}>

@@ -25,7 +25,7 @@ export class GoalList extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        'goals': state.goals
+        'goals': state.goal.goals
     }
 };
 
