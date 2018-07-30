@@ -2,24 +2,24 @@ import React from 'react';
 import {shallow} from 'enzyme';
 import sinon from 'sinon';
 
-import GoalList from './GoalList';
+import {GoalList} from './GoalList';
 
 
 describe('GoalList', () => {
     it('should render a list of goals', () => {
         const expected = [
-            {name: 'I weigh 58 kilos'},
+            {name: 'Read one million books'},
             {name: 'I run 10k in less than one hour'}
         ];
         const goalListWrapper = shallow(<GoalList goals={expected}/>);
 
         expect(goalListWrapper.find('li')).toHaveLength(2);
-        expect(goalListWrapper.find('li').at(0).text()).toEqual('I weigh 58 kilos');
+        expect(goalListWrapper.find('li').at(0).text()).toEqual('Read one million books');
     });
 
-    it('should calls onAdd when add btn is clicked', () => {
+    it('should call onAdd when add btn is clicked', () => {
         const expected = [
-            {name: 'I weigh 58 kilos'},
+            {name: 'Read one million books'},
             {name: 'I run 10k in less than one hour'}
         ];
         const onAdd = sinon.spy();

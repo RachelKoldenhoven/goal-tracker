@@ -3,12 +3,12 @@ import {connect} from 'react-redux';
 
 import {saveGoal} from './mainActions';
 
-class GoalAdd extends Component {
+export class GoalAdd extends Component {
     constructor(props) {
         super(props);
 
         this.state = {
-                name: ''
+            name: ''
         }
     }
 

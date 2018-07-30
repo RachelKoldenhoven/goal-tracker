@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 
 import {onAdd} from './mainActions';
 
-class GoalList extends Component {
+export class GoalList extends Component {
 
     get goals() {
         return this.props.goals.map(goal => {

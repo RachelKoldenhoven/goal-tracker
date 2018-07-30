@@ -6,7 +6,7 @@ import {getGoals} from './mainActions';
 import GoalAdd from './GoalAdd';
 import GoalList from './GoalList';
 
-class App extends Component {
+export class App extends Component {
 
     componentDidMount() {
         this.props.getGoals();
