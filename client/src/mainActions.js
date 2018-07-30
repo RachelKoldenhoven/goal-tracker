@@ -1,3 +1,5 @@
+import {push as pushRoute} from 'redux-first-routing';
+
 export const getGoals = () => {
     return async (dispatch) => {
         const request = await fetch('/api/goals');
@@ -14,18 +16,6 @@ export const gotGoals = (goals) => {
     }
 };
 
-export const onAdd = () => {
-    return {
-        type: 'NAV_ADD_GOAL'
-    }
-};
-
-export const navGoalList = () => {
-  return {
-      type: 'NAV_GOAL_LIST'
-  }
-};
-
 export const saveGoal = (goal) => {
     return async (dispatch) => {
         await fetch('api/goals', {
@@ -37,6 +27,6 @@ export const saveGoal = (goal) => {
             }
         });
         dispatch(getGoals());
-        dispatch(navGoalList());
+        dispatch(pushRoute('/'));
     }
 };

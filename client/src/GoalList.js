@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-
-import {onAdd} from './mainActions';
+import {push as pushRoute} from 'redux-first-routing';
 
 export class GoalList extends Component {
 
@@ -20,7 +19,6 @@ export class GoalList extends Component {
             </div>
         )
     }
-
 }
 
 const mapStateToProps = (state) => {
@@ -31,7 +29,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        onAdd: () => dispatch(onAdd())
+        onAdd: () => dispatch(pushRoute('GoalAdd'))
     }
 };
 
