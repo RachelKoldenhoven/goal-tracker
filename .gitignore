@@ -31,3 +31,8 @@ dataSources/
 .gradle/
 out/
 src/main/resources/static/
+
+bin/
+.classpath
+.project
+.settings/
