@@ -5,6 +5,8 @@ import org.apache.commons.lang3.StringUtils;
 import org.fluentlenium.adapter.junit.FluentTest;
 import org.fluentlenium.core.domain.FluentWebElement;
 import org.fluentlenium.core.hook.wait.Wait;
+import org.junit.After;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.openqa.selenium.WebDriver;
@@ -41,11 +43,20 @@ public class GoalsUAT extends FluentTest {
         return driver;
     }
 
+    @Before
+    public void before() {
+        repository.deleteAll();
+    }
+
+    @After
+    public void after() {
+        repository.deleteAll();
+    }
+
 
     @Test
     public void shouldSeeGoalList() {
-        // setup
-        repository.deleteAll();
+        // Setup
         Goal testGoal = new Goal("Read books");
         repository.save(testGoal);
 
@@ -59,5 +70,34 @@ public class GoalsUAT extends FluentTest {
 
         // Teardown
 
+    }
+
+    @Test
+    public void shouldEditGoal() {
+        // Setup
+        Goal testGoal = new Goal("Read books");
+        repository.save(testGoal);
+
+        // Exercise
+        goTo("http://localhost:" + this.port + "/");
+        await().until(() -> $("p").present());
+
+        // Exercise: Select goal
+        FluentWebElement goal = $("li").get(0);
+        goal.click();
+        await().until(() -> $(".goalEdit").present());
+
+        // Exercise: Edit goal
+        $(".goal").fill().withText("Read one million books");
+
+        // Exercise: Save changes
+        $(".save").click();
+        await().until(() -> $(".goalList").present());
+
+        // Assert
+        FluentWebElement editedGoal = $("li").get(0);
+        assertThat(goal.text()).isEqualTo("Read one million books");
+
+        // Teardown
     }
 }
