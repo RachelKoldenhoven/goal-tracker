@@ -1,6 +1,7 @@
 const initialState = {
     goals: [],
-    view: 'GoalList'
+    view: 'GoalList',
+    selectedGoal: undefined
 };
 
 const goalReducer = (state = initialState, action) => {
@@ -8,6 +9,8 @@ const goalReducer = (state = initialState, action) => {
     switch (action.type) {
         case 'GOT_GOALS':
             return {...state, goals: action.goals};
+        case 'SELECT_GOAL':
+            return{...state, selectedGoal: action.goal};
         default:
             return state;
     }

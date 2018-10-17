@@ -30,3 +30,22 @@ export const saveGoal = (goal) => {
         dispatch(pushRoute('/'));
     }
 };
+
+// action creator, returns an action (object)
+export const selectGoal = (goal) => {
+    return {
+        type: 'SELECT_GOAL',
+        goal
+    };
+};
+
+export const onSelectGoal = (goal) => {
+    return (dispatch) => {
+        dispatch(selectGoal(goal));
+        dispatch(pushRoute('/GoalEdit'));
+    }
+};
+
+export const updateGoal = (goal) => {
+    console.log(goal);
+};

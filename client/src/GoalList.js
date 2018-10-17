@@ -2,11 +2,21 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {push as pushRoute} from 'redux-first-routing';
 
+import {onSelectGoal} from "./mainActions";
+
 export class GoalList extends Component {
+
+    onSelect = (goal) => {
+        this.props.selectGoal(goal);
+    };
 
     get goals() {
         return this.props.goals.map(goal => {
-            return <li key={goal.name}>{goal.name}</li>
+            return <div className="GoalList">
+                <li key={goal.name}>{goal.name}</li>
+                <button onClick={() => this.onSelect(goal)}>Edit</button>
+                </div>
+
         });
     }
 
@@ -29,7 +39,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        onAdd: () => dispatch(pushRoute('GoalAdd'))
+        onAdd: () => dispatch(pushRoute('GoalAdd')),
+        selectGoal: (goal) => dispatch(onSelectGoal(goal))
     }
 };
 

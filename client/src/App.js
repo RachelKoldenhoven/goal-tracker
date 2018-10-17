@@ -5,6 +5,7 @@ import './App.css';
 import {getGoals} from './mainActions';
 import GoalAdd from './GoalAdd';
 import GoalList from './GoalList';
+import GoalEdit from './GoalEdit';
 
 export class App extends Component {
 
@@ -13,11 +14,11 @@ export class App extends Component {
     }
 
     get currentView() {
-        if (this.props.url === '/') {
-            return <GoalList/>
-        } else {
+        if (this.props.url === '/GoalAdd') {
             return <GoalAdd/>
-        }
+        } else if (this.props.url === '/GoalEdit') {
+            return <GoalEdit/>
+        } else  return <GoalList/>
     }
 
     render() {
