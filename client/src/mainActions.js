@@ -31,17 +31,8 @@ export const saveGoal = (goal) => {
     }
 };
 
-// action creator, returns an action (object)
-export const selectGoal = (goal) => {
-    return {
-        type: 'SELECT_GOAL',
-        goal
-    };
-};
-
 export const onSelectGoal = (goal) => {
     return (dispatch) => {
-        dispatch(selectGoal(goal));
         dispatch(pushRoute(`/goals/${goal.id}`));
     }
 };
