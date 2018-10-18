@@ -74,6 +74,8 @@ public class GoalsUAT extends FluentTest {
 
     @Test
     public void shouldEditGoal() {
+        // TODO: nav to goals/1 page and edit directly
+        // TODO: test for browsing to edit page
         // Setup
         Goal testGoal = new Goal("Read books");
         repository.save(testGoal);

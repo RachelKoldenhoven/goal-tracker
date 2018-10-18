@@ -1,10 +1,7 @@
 package com.koldenfrozen.goals;
 
 import com.koldenfrozen.goals.model.Goal;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -27,5 +24,14 @@ public class GoalController {
         return this.repository.save(goal);
     }
 
-}
+    @PutMapping("/api/goals/{id}")
+    public Goal update(@RequestBody Goal goal, @PathVariable Integer id) {
+        if(id != goal.getId()) throw new RuntimeException("Goal id does not match route!");
 
+        Goal goalToUpdate = repository.findById(id).get();
+        goalToUpdate.setName(goal.getName());
+
+        return this.repository.save(goalToUpdate);
+    }
+
+}

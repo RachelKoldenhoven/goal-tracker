@@ -12,10 +12,10 @@ export class GoalList extends Component {
 
     get goals() {
         return this.props.goals.map(goal => {
-            return <div className="GoalList">
-                <li key={goal.name}>{goal.name}</li>
+            return <div key={goal.id}>
+                <li>{goal.name}</li>
                 <button onClick={() => this.onSelect(goal)}>Edit</button>
-                </div>
+            </div>
 
         });
     }
@@ -24,7 +24,9 @@ export class GoalList extends Component {
         return (
             <div>
                 <p>Goal List</p>
-                {this.goals}
+                <div className="GoalList">
+                    {this.goals}
+                </div>
                 <button onClick={this.props.onAdd}>Add a Goal</button>
             </div>
         )

@@ -42,10 +42,21 @@ export const selectGoal = (goal) => {
 export const onSelectGoal = (goal) => {
     return (dispatch) => {
         dispatch(selectGoal(goal));
-        dispatch(pushRoute('/GoalEdit'));
+        dispatch(pushRoute(`/goals/${goal.id}`));
     }
 };
 
 export const updateGoal = (goal) => {
-    console.log(goal);
-};
+    console.log('goal to update: ', goal);
+    return async (dispatch) => {
+        await fetch(`api/goals/${goal.id}`, {
+            method: 'PUT',
+            body: JSON.stringify(goal),
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json',
+            }
+        });
+        dispatch(getGoals());
+        dispatch(pushRoute('/'));
+    }};

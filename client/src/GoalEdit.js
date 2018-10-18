@@ -8,8 +8,19 @@ export class GoalEdit extends Component {
         super(props);
 
         this.state = {
-            name: this.props.goal.name
+            name: this.selectedGoal.name,
+            id: this.selectedGoal.id
         }
+    }
+
+    get selectedGoal() {
+        const goalId = this.props.url;
+        const id =  goalId.substring(goalId.lastIndexOf('/') + 1);
+
+        const selGl = this.props.goals.find((goal) => {
+            return goal.id === parseInt(id, 10);
+        });
+        return selGl;
     }
 
     onChange = (event) => {
@@ -21,7 +32,8 @@ export class GoalEdit extends Component {
 
     onSave = (goalName) => {
         const goal = {
-            name: goalName
+            name: goalName,
+            id: this.state.id
         };
         this.props.updateGoal(goal);
     };
@@ -44,7 +56,8 @@ export class GoalEdit extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        'goal': state.goal.selectedGoal
+        url: state.router.pathname,
+        goals: state.goal.goals
     }
 };
 

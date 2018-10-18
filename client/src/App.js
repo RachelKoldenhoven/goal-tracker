@@ -14,9 +14,10 @@ export class App extends Component {
     }
 
     get currentView() {
+        if(this.props.loading) return <div>Loading</div>;
         if (this.props.url === '/GoalAdd') {
             return <GoalAdd/>
-        } else if (this.props.url === '/GoalEdit') {
+        } else if (this.props.url.startsWith('/goals/')) {
             return <GoalEdit/>
         } else  return <GoalList/>
     }
@@ -35,7 +36,8 @@ export class App extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        url: state.router.pathname
+        url: state.router.pathname,
+        loading: state.goal.loading
     }
 };
 
