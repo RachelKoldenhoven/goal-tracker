@@ -28,7 +28,7 @@ export class GoalAdd extends Component {
 
     render() {
         return (
-            <div>
+            <div className="GoalAdd">
                 <p>Add a goal</p>
                 <input onChange={this.onChange}
                        name="name"

@@ -25,7 +25,7 @@ describe('GoalList', () => {
         const onAdd = sinon.spy();
         const goalListWrapper = shallow(<GoalList onAdd={onAdd} goals={expected}/>);
 
-        goalListWrapper.find('button').simulate('click');
+        goalListWrapper.find('.onAdd').simulate('click');
 
         expect(onAdd.calledOnce).toEqual(true);
     })

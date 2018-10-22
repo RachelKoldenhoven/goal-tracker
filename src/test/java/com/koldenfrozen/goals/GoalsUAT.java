@@ -18,6 +18,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
+import static org.fluentlenium.core.filter.FilterConstructor.withName;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
@@ -67,39 +68,65 @@ public class GoalsUAT extends FluentTest {
         // Assert
         FluentWebElement goal = $("li").get(0);
         assertThat(goal.text()).isEqualTo("Read books");
-
-        // Teardown
-
     }
 
     @Test
-    public void shouldEditGoal() {
-        // TODO: nav to goals/1 page and edit directly
-        // TODO: test for browsing to edit page
+    public void shouldNavToAdd() {
         // Setup
         Goal testGoal = new Goal("Read books");
         repository.save(testGoal);
 
         // Exercise
         goTo("http://localhost:" + this.port + "/");
-        await().until(() -> $("p").present());
+        await().until(() -> $(".GoalList").present());
+        FluentWebElement div = $(".GoalList").get(0);
+        div.$("button").click();
+        await().untilPage().isLoaded();
 
-        // Exercise: Select goal
-        FluentWebElement goal = $("li").get(0);
-        goal.click();
-        await().until(() -> $(".goalEdit").present());
+        // Assert
+        assertThat($(".GoalAdd")).isNotNull();
+    }
+
+    @Test
+    public void shouldNavToEdit() {
+        // Setup
+        Goal testGoal = new Goal("Read books");
+        repository.save(testGoal);
+
+        // Exercise
+        goTo("http://localhost:" + this.port + "/");
+        await().until(() -> $("li").present());
+        FluentWebElement btn = $(".onEdit").get(0);
+        btn.click();
+        await().untilPage().isLoaded();
+
+        // Assert
+        FluentWebElement goalToEdit = $(".GoalEdit").get(0);
+        assertThat(goalToEdit.$("input").value()).isEqualTo("Read books");
+
+
+    }
+
+    @Test
+    public void shouldEditGoal() {
+        // TODO: make this pass
+        // Setup
+        Goal testGoal = new Goal("Read books");
+        repository.save(testGoal);
+        goTo("http://localhost:" + this.port + "/goals/1");
+        await().untilPage().isLoaded();
+        FluentWebElement input = $("input", withName("name")).get(0);
 
         // Exercise: Edit goal
-        $(".goal").fill().withText("Read one million books");
+        input.fill().withText("Read one million books");
 
         // Exercise: Save changes
-        $(".save").click();
-        await().until(() -> $(".goalList").present());
+        $("button", withName("save")).click();
+        await().until(() -> $(".GoalList").present());
 
         // Assert
         FluentWebElement editedGoal = $("li").get(0);
-        assertThat(goal.text()).isEqualTo("Read one million books");
+        assertThat(editedGoal.text()).isEqualTo("Read one million books");
 
-        // Teardown
     }
 }

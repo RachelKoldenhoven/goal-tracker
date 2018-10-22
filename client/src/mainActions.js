@@ -18,7 +18,7 @@ export const gotGoals = (goals) => {
 
 export const saveGoal = (goal) => {
     return async (dispatch) => {
-        await fetch('api/goals', {
+        await fetch('/api/goals', {
             method: 'POST',
             body: JSON.stringify(goal),
             headers: {
@@ -38,9 +38,8 @@ export const onSelectGoal = (goal) => {
 };
 
 export const updateGoal = (goal) => {
-    console.log('goal to update: ', goal);
     return async (dispatch) => {
-        await fetch(`api/goals/${goal.id}`, {
+        await fetch(`/api/goals/${goal.id}`, {
             method: 'PUT',
             body: JSON.stringify(goal),
             headers: {

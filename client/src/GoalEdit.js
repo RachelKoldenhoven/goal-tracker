@@ -14,6 +14,7 @@ export class GoalEdit extends Component {
     }
 
     get selectedGoal() {
+        // TODO: sent to home if goal is not found
         const goalId = this.props.url;
         const id =  goalId.substring(goalId.lastIndexOf('/') + 1);
 
