@@ -8,20 +8,30 @@ export class GoalEdit extends Component {
         super(props);
 
         this.state = {
-            name: this.selectedGoal.name,
-            id: this.selectedGoal.id
+            goal: this.selectedGoal
         }
     }
 
     get selectedGoal() {
-        // TODO: sent to home if goal is not found
         const goalId = this.props.url;
-        const id =  goalId.substring(goalId.lastIndexOf('/') + 1);
+        const id = goalId.substring(goalId.lastIndexOf('/') + 1);
 
-        const selGl = this.props.goals.find((goal) => {
+        return this.props.goals.find((goal) => {
             return goal.id === parseInt(id, 10);
         });
-        return selGl;
+    }
+
+    get view() {
+        if (!this.selectedGoal) return <p>Oops, goal not found!</p>
+        else return <div>
+            <input onChange={this.onChange}
+                   name="name"
+                   value={this.state.goal.name}/>
+            <button name="save"
+                    onClick={() => this.onSave(this.state.goal.name)}>
+                Save Changes
+            </button>
+        </div>
     }
 
     onChange = (event) => {
@@ -43,13 +53,7 @@ export class GoalEdit extends Component {
         return (
             <div className="GoalEdit">
                 <p>Goal Edit Component</p>
-                <input onChange={this.onChange}
-                       name="name"
-                       value={this.state.name}/>
-                <button name="save"
-                        onClick={() => this.onSave(this.state.name)}>
-                    Save Changes
-                </button>
+                {this.view}
             </div>
         )
     }
