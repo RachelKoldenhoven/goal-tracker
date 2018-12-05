@@ -22,7 +22,7 @@ export class GoalEdit extends Component {
     }
 
     get view() {
-        if (!this.selectedGoal) return <p>Oops, goal not found!</p>
+        if (!this.selectedGoal) return <p>Oops, goal not found!</p>;
         else return <div>
             <input onChange={this.onChange}
                    name="name"
