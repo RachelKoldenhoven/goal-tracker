@@ -8,7 +8,8 @@ export class GoalEdit extends Component {
         super(props);
 
         this.state = {
-            goal: this.selectedGoal
+            name: this.selectedGoal.name,
+            id: this.selectedGoal.id
         }
     }
 
@@ -25,10 +26,11 @@ export class GoalEdit extends Component {
         if (!this.selectedGoal) return <p>Oops, goal not found!</p>;
         else return <div>
             <input onChange={this.onChange}
+                   type="text"
                    name="name"
-                   value={this.state.goal.name}/>
+                   value={this.state.name}/>
             <button name="save"
-                    onClick={() => this.onSave(this.state.goal.name)}>
+                    onClick={() => this.onSave(this.state.name)}>
                 Save Changes
             </button>
         </div>
@@ -37,8 +39,7 @@ export class GoalEdit extends Component {
     onChange = (event) => {
         const target = event.target;
         const value = target.value;
-        const name = target.name;
-        this.setState({...this.state, [name]: value});
+        this.setState({...this.state, name: value});
     };
 
     onSave = (goalName) => {
