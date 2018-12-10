@@ -8,3 +8,5 @@ This is a work-in-progress app I am building for research that includes:
 - MySQL db
 - [FluentLenium user acceptance testing](http://fluentlenium.org/docs/)
 - [Redux Thunk](https://github.com/reduxjs/redux-thunk)
+
+- Deployed [here](https://koldenfrozen.herokuapp.com/)

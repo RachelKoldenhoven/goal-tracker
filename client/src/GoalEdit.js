@@ -29,6 +29,9 @@ export class GoalEdit extends Component {
                    type="text"
                    name="name"
                    value={this.state.name}/>
+            <button name="cancel">
+                Cancel
+            </button>
             <button name="save"
                     onClick={() => this.onSave(this.state.name)}>
                 Save Changes

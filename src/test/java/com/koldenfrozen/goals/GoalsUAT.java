@@ -108,17 +108,38 @@ public class GoalsUAT extends FluentTest {
     }
 
     @Test
+    public void shouldSaveGoal() {
+        // Setup
+        goTo("http://localhost:" + this.port + "/GoalAdd");
+        await().until(() -> $("input").present());
+        FluentWebElement input = $("input", withName("name")).get(0);
+
+        // Exercise: Type in Goal
+        input.fill().with("Run marathon");
+
+        // Exercise: Save
+        $("button", withName("save")).click();
+        await().until(() -> $(".GoalList").present());
+
+        // Assert
+        FluentWebElement editedGoal = $("li").get(0);
+        assertThat(editedGoal.text()).isEqualTo("Run marathon");
+    }
+
+    @Test
     public void shouldEditGoal() {
         // TODO: make this pass
         // Setup
         Goal testGoal = new Goal("Read books");
         repository.save(testGoal);
-        goTo("http://localhost:" + this.port + "/goals/1");
-        await().untilPage().isLoaded();
+        int goalId = testGoal.getId();
+        goTo("http://localhost:" + this.port + "/goals/" + goalId);
+        await().until(() -> $("input").present());
         FluentWebElement input = $("input", withName("name")).get(0);
 
         // Exercise: Edit goal
-        input.fill().withText("Read one million books");
+        input.clear();
+        input.fill().with("Read one million books");
 
         // Exercise: Save changes
         $("button", withName("save")).click();
