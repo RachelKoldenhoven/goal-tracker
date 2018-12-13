@@ -1,3 +1,63 @@
 .App {
   text-align: center;
 }
+
+.red {
+    color: #B80F28;
+}
+
+.red2 {
+    color: #B80E27;
+}
+
+.black {
+    color: #333333;
+}
+
+.gold {
+    color: #D3A52E;
+}
+
+.tan {
+    color: #F4F1EA;
+}
+
+.lightTan {
+    color: #EFEEE0;
+}
+
+.green {
+    color: #409D69;
+}
+
+.white {
+    color: #FFFFFF;
+}
+
+.teal {
+    color: #00635D;
+}
+
+.brown {
+    color: #372010;
+}
+
+.lightBrown {
+    color: #BAAC9A;
+}
+
+.grey1 {
+    color: #767676;
+}
+
+.grey2 {
+    color: #9C9C9C;
+}
+
+.grey3 {
+    color: #D1D1D1;
+}
+
+.grey4 {
+    color: #EAEAEA;
+}

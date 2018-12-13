@@ -7,8 +7,7 @@ import {
     createBrowserHistory,
     routerReducer,
     routerMiddleware as createRouterMiddleware,
-    startListener,
-    push
+    startListener
 } from 'redux-first-routing'
 
 import './index.css';

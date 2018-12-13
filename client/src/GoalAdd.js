@@ -42,14 +42,10 @@ export class GoalAdd extends Component {
     }
 }
 
-const mapStateToProps = (state) => {
-
-};
-
 const mapDispatchToProps = (dispatch) => {
     return {
         saveGoal: (goal) => dispatch(saveGoal(goal))
     }
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(GoalAdd);
+export default connect(undefined, mapDispatchToProps)(GoalAdd);
