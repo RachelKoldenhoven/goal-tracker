@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 
 import {updateGoal} from "./mainActions";
+import {push as pushRoute} from "redux-first-routing";
 
 export class GoalEdit extends Component {
     constructor(props) {
@@ -29,7 +30,9 @@ export class GoalEdit extends Component {
                    type="text"
                    name="name"
                    value={this.state.name}/>
-            <button name="cancel">
+            <button name="cancel"
+                    className="onCancel"
+                    onClick={() => this.props.onCancel()}>
                 Cancel
             </button>
             <button name="save"
@@ -72,7 +75,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        updateGoal: (goal) => dispatch(updateGoal(goal))
+        updateGoal: (goal) => dispatch(updateGoal(goal)),
+        onCancel: () => dispatch(pushRoute('/'))
     }
 };
 

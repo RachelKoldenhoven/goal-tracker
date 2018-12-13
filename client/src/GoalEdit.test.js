@@ -48,4 +48,21 @@ describe('GoalEdit', () => {
         expect(updateGoal.calledWith(expected)).toBe(true);
         expect(updateGoal.calledOnce).toBe(true);
     });
+
+    it('should call onCancel when Cancel btn is clicked', () => {
+        // Setup
+        const goals = [{id: 1, name: 'read books'}];
+        const url = 'localhost:3000/goals/1';
+        const onCancel = sinon.spy();
+        const goalEditWrapper = shallow(<GoalEdit
+            url={url}
+            goals={goals}
+            onCancel={onCancel}/>);
+
+        // Exercise
+        goalEditWrapper.find('.onCancel').simulate('click');
+
+        // Assert
+        expect(onCancel.calledOnce).toEqual(true);
+    });
 });
