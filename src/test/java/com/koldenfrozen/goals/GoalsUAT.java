@@ -17,6 +17,8 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.util.List;
+
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.fluentlenium.core.filter.FilterConstructor.withName;
 
@@ -128,7 +130,6 @@ public class GoalsUAT extends FluentTest {
 
     @Test
     public void shouldEditGoal() {
-        // TODO: make this pass
         // Setup
         Goal testGoal = new Goal("Read books");
         repository.save(testGoal);
@@ -148,6 +149,24 @@ public class GoalsUAT extends FluentTest {
         // Assert
         FluentWebElement editedGoal = $("li").get(0);
         assertThat(editedGoal.text()).isEqualTo("Read one million books");
+    }
 
+    @Test
+    public void shouldDeleteGoal() {
+        // Setup
+        Goal testGoal = new Goal("Read books");
+        repository.save(testGoal);
+        int goalId = testGoal.getId();
+        goTo("http://localhost:" + this.port + "/goals/" + goalId);
+        await().until(() -> $("button", withName("delete")).present());
+        FluentWebElement deleteBtn = $("button", withName("delete")).get(0);
+
+        // Exercise
+        deleteBtn.click();
+        await().until(() -> $(".GoalList").present());
+
+        // Assert
+        List<Goal> goals = repository.findAll();
+        assertThat(goals.size()).isEqualTo(0);
     }
 }

@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 
 import {updateGoal} from "./mainActions";
+import {deleteGoal} from "./mainActions";
 import {push as pushRoute} from "redux-first-routing";
 
 export class GoalEdit extends Component {
@@ -38,6 +39,11 @@ export class GoalEdit extends Component {
             <button name="save"
                     onClick={() => this.onSave(this.state.name)}>
                 Save Changes
+            </button>
+            <button name="delete"
+                    className="onDelete"
+                    onClick={() => this.props.deleteGoal(this.state)}>
+                Delete Goal
             </button>
         </div>
     }
@@ -76,7 +82,8 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
     return {
         updateGoal: (goal) => dispatch(updateGoal(goal)),
-        onCancel: () => dispatch(pushRoute('/'))
+        onCancel: () => dispatch(pushRoute('/')),
+        deleteGoal: (goal) => dispatch(deleteGoal(goal))
     }
 };
 

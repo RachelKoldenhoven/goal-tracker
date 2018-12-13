@@ -49,4 +49,20 @@ export const updateGoal = (goal) => {
         });
         dispatch(getGoals());
         dispatch(pushRoute('/'));
-    }};
+    }
+};
+
+export const deleteGoal = (goal) => {
+    return async (dispatch) => {
+        await fetch(`/api/goals/${goal.id}`, {
+            method: 'DELETE',
+            body: JSON.stringify(goal),
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            }
+        });
+        dispatch(getGoals());
+        dispatch(pushRoute('/'));
+    }
+};

@@ -34,4 +34,11 @@ public class GoalController {
         return this.repository.save(goalToUpdate);
     }
 
+    @DeleteMapping("/api/goals/{id}")
+    public void delete(@RequestBody Goal goal, @PathVariable Integer id) {
+        if(id != goal.getId()) throw new RuntimeException("Goal id does not match route!");
+
+        this.repository.deleteById(id);
+    }
+
 }

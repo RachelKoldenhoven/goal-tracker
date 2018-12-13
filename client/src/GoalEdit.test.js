@@ -63,6 +63,25 @@ describe('GoalEdit', () => {
         goalEditWrapper.find('.onCancel').simulate('click');
 
         // Assert
-        expect(onCancel.calledOnce).toEqual(true);
+        expect(onCancel.calledOnce).toBe(true);
+    });
+
+    it('should call onDelete when Delete btn is clicked', () => {
+        // Setup
+        const goals = [{id: 1, name: 'read books'}];
+        const url = 'localhost:3000/goals/1';
+        const deleteGoal = sinon.spy();
+        const expected = {id: 1, name: 'read books'};
+        const goalEditWrapper = shallow(<GoalEdit
+            url={url}
+            goals={goals}
+            deleteGoal={deleteGoal}/>);
+
+        // Exercise
+        goalEditWrapper.find('.onDelete').simulate('click');
+
+        // Assert
+        expect(deleteGoal.calledOnce).toBe(true);
+        expect(deleteGoal.calledWith(expected)).toBe(true)
     });
 });
