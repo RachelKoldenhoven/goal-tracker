@@ -4,6 +4,7 @@ import {connect} from 'react-redux';
 import {updateGoal} from "./mainActions";
 import {deleteGoal} from "./mainActions";
 import {push as pushRoute} from "redux-first-routing";
+import styles from './GoalEdit.module.css';
 
 export class GoalEdit extends Component {
     constructor(props) {
@@ -26,25 +27,35 @@ export class GoalEdit extends Component {
 
     get view() {
         if (!this.selectedGoal) return <p>Oops, goal not found!</p>;
-        else return <div>
-            <input onChange={this.onChange}
-                   type="text"
-                   name="name"
-                   value={this.state.name}/>
-            <button name="cancel"
-                    className="onCancel"
-                    onClick={() => this.props.onCancel()}>
-                Cancel
-            </button>
-            <button name="save"
-                    onClick={() => this.onSave(this.state.name)}>
-                Save Changes
-            </button>
-            <button name="delete"
-                    className="onDelete"
-                    onClick={() => this.props.deleteGoal(this.state)}>
-                Delete Goal
-            </button>
+        else return <div className={styles['Main']}>
+            <div className={styles['Goal']}>
+                <label>
+                    Goal:
+                    <input onChange={this.onChange}
+                           type="text"
+                           name="name"
+                           value={this.state.name}/>
+                </label>
+                <div className={styles['Buttons']}>
+                    <button name="cancel"
+                            className={styles["onCancel"]}
+                            onClick={() => this.props.onCancel()}>
+                        Cancel
+                    </button>
+                    <button name="save"
+                            className={styles["onSave"]}
+                            onClick={() => this.onSave(this.state.name)}>
+                        Save Changes
+                    </button>
+                </div>
+            </div>
+            <div className={styles['Delete']}>
+                <button name="delete"
+                        className={styles["onDelete"]}
+                        onClick={() => this.props.deleteGoal(this.state)}>
+                    Delete Goal
+                </button>
+            </div>
         </div>
     }
 
@@ -64,8 +75,7 @@ export class GoalEdit extends Component {
 
     render() {
         return (
-            <div className="GoalEdit">
-                <p>Goal Edit Component</p>
+            <div className={styles['GoalEdit']}>
                 {this.view}
             </div>
         )
