@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 import {push as pushRoute} from 'redux-first-routing';
 
 import {onSelectGoal} from "./mainActions";
+import styles from './GoalList.module.css';
 
 export class GoalList extends Component {
 
@@ -12,25 +13,29 @@ export class GoalList extends Component {
 
     get goals() {
         return this.props.goals.map(goal => {
-            return <div key={goal.id} className="Goal">
-                <li>{goal.name}</li>
+            return <ul key={goal.id}
+                       className={styles["Goal"]}>
+                <li><h4>{goal.name}</h4></li>
                 <button className="onEdit"
                         onClick={() => this.onSelect(goal)}>
-                    Edit
+                    Select
                 </button>
-            </div>
+            </ul>
 
         });
     }
 
     render() {
         return (
-            <div>
-                <p>Goal List</p>
-                <div className="GoalList">
+            <div className={styles['GoalList']}>
+                <h3>My Goals</h3>
+                <div className={styles['Goals']}>
                     {this.goals}
                 </div>
-                <button className="onAdd" onClick={this.props.onAdd}>Add a Goal</button>
+                <button className={styles['onAdd']}
+                        onClick={this.props.onAdd}>
+                    Add a Goal
+                </button>
             </div>
         )
     }

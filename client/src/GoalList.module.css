@@ -1,0 +1,25 @@
+.GoalList {
+    background-color: #EFEEE0;
+    color: #372010;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    align-items: center;
+}
+
+.Goals {
+    display: flex;
+    flex-direction: column;
+}
+
+.Goal {
+    list-style-type: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.onAdd {
+    background-color: #B80E27;
+    color: #EFEEE0;
+}
