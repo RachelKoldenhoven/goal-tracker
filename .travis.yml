@@ -2,3 +2,7 @@ language: java
 
 services:
   - mysql
+
+script:
+- cat /etc/*release*
+- ./gradlew check --info --stacktrace
