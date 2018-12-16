@@ -5,6 +5,7 @@ services:
 
 before_install:
   - mysql -e 'CREATE DATABASE goals_test;'
+  - google-chrome-stable --headless --disable-gpu --remote-debugging-port=9222 http://localhost &
 
 before_script:
 - echo "USE mysql;\nUPDATE user SET password=PASSWORD('password') WHERE user='root';\nFLUSH PRIVILEGES;\n" | mysql -u root
@@ -12,3 +13,7 @@ before_script:
 script:
 - cat /etc/*release*
 - ./gradlew check --info --stacktrace
+
+dist: trusty
+addons:
+  chrome: stable
