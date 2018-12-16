@@ -20,6 +20,7 @@ script:
 - cat /etc/*release*
 - ./gradlew check --info --stacktrace
 
-dist: trusty
+dist: xenial
+
 addons:
   chrome: stable
