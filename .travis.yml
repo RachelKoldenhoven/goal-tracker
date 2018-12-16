@@ -10,7 +10,7 @@ before_install:
 
 before_script:
 - echo "USE mysql;\nUPDATE user SET password=PASSWORD('password') WHERE user='root';\nFLUSH PRIVILEGES;\n" | mysql -u root
-- wget http://chromedriver.storage.googleapis.com/2.10/chromedriver_linux64.zip
+- wget http://chromedriver.storage.googleapis.com/2.45/chromedriver_linux64.zip
 - unzip chromedriver_linux64.zip -d /home/travis/bin
 - chmod ugo+rx /home/travis/bin/chromedriver
 
