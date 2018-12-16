@@ -37,6 +37,7 @@ public class GoalsUAT extends FluentTest {
         opt.addArguments("--headless");
         opt.addArguments("--disable-gpu");
         opt.addArguments("--no-sandbox");
+        opt.addArguments("--whitelisted-ips=''");
         String path = System.getenv("GOOGLE_CHROME_BIN"); // heroku-specific
         if (!StringUtils.isEmpty(System.getenv("GOOGLE_CHROME_BIN"))) {
             System.out.println("Setting binary path to: " + path);
