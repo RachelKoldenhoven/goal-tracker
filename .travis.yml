@@ -3,6 +3,8 @@ language: java
 services:
   - mysql
 
+sudo: required
+
 before_install:
   - mysql -e 'CREATE DATABASE goals_test;'
   - google-chrome-stable --headless --disable-gpu --remote-debugging-port=9222 http://localhost &
