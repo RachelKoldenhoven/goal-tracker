@@ -9,6 +9,16 @@ before_install:
 
 before_script:
 - echo "USE mysql;\nUPDATE user SET password=PASSWORD('password') WHERE user='root';\nFLUSH PRIVILEGES;\n" | mysql -u root
+- wget http://chromedriver.storage.googleapis.com/2.10/chromedriver_linux64.zip
+- unzip chromedriver_linux64.zip -d /tmp
+- chmod ugo+rx /tmp/chromedriver
+- export CHROME_BIN=chromium-browser
+- "export DISPLAY=:99.0"
+- "sh -e /etc/init.d/xvfb start"
+- sleep 3
+
+env:
+- CHROME_DRIVER_PATH=/tmp/chromedriver
 
 script:
 - cat /etc/*release*
