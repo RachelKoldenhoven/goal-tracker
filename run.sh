@@ -1,1 +1,1 @@
-docker run -it goals /bin/bash
+docker run -v `pwd`:/workspace -it goals /bin/bash
