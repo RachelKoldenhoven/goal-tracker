@@ -66,7 +66,7 @@ public class GoalsUAT extends FluentTest {
 
         // Exercise
         goTo("http://localhost:" + this.port + "/");
-        await().until(() -> $("p").present());
+        await().until(() -> $("h3").present());
 
         // Assert
         FluentWebElement goal = $("li").get(0);
@@ -81,9 +81,9 @@ public class GoalsUAT extends FluentTest {
 
         // Exercise
         goTo("http://localhost:" + this.port + "/");
-        await().until(() -> $(".GoalList").present());
-        FluentWebElement div = $(".GoalList").get(0);
-        div.$("button").click();
+        await().until(() -> $("[class^=\"GoalList\"]").present());
+        FluentWebElement div = $("[class^=\"GoalList\"]").get(0);
+        div.$("button").get(0).click();
         await().untilPage().isLoaded();
 
         // Assert
@@ -104,7 +104,7 @@ public class GoalsUAT extends FluentTest {
         await().untilPage().isLoaded();
 
         // Assert
-        FluentWebElement goalToEdit = $(".GoalEdit").get(0);
+        FluentWebElement goalToEdit = $("[class^=\"GoalEdit\"]").get(0);
         assertThat(goalToEdit.$("input").value()).isEqualTo("Read books");
 
 
@@ -122,7 +122,7 @@ public class GoalsUAT extends FluentTest {
 
         // Exercise: Save
         $("button", withName("save")).click();
-        await().until(() -> $(".GoalList").present());
+        await().until(() -> $("[class^=\"GoalList\"]").present());
 
         // Assert
         FluentWebElement editedGoal = $("li").get(0);
@@ -145,7 +145,7 @@ public class GoalsUAT extends FluentTest {
 
         // Exercise: Save changes
         $("button", withName("save")).click();
-        await().until(() -> $(".GoalList").present());
+        await().until(() -> $("[class^=\"GoalList\"]").present());
 
         // Assert
         FluentWebElement editedGoal = $("li").get(0);
@@ -164,7 +164,7 @@ public class GoalsUAT extends FluentTest {
 
         // Exercise
         deleteBtn.click();
-        await().until(() -> $(".GoalList").present());
+        await().until(() -> $("[class^=\"GoalList\"]").present());
 
         // Assert
         List<Goal> goals = repository.findAll();
