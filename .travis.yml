@@ -8,7 +8,10 @@ addons:
 jdk: openjdk8
 
 before_install:
-  - echo PATH=$PATH
+  - echo "create database goals_test;" | mysql -u root
+  - echo "create database goals;" | mysql -u root
+  - echo "show databases;" | mysql -u root
+  - echo "GRANT ALL PRIVILEGES ON *.* TO 'root'@'localhost' IDENTIFIED BY 'password' WITH GRANT OPTION;" | mysql -u root
 
 script:
   - ./gradlew check --info --stacktrace
