@@ -12,7 +12,11 @@ before_install:
   - echo "create database goals;" | mysql -u root
   - echo "show databases;" | mysql -u root
   - echo "GRANT ALL PRIVILEGES ON *.* TO 'root'@'localhost' IDENTIFIED BY 'password' WITH GRANT OPTION;" | mysql -u root
+  - wget -q http://chromedriver.storage.googleapis.com/2.45/chromedriver_linux64.zip
+  - unzip chromedriver_linux64.zip -d /usr/bin
+  - chromedriver --version
 
 script:
   - ./gradlew check --info --stacktrace
+
 
