@@ -1,5 +1,7 @@
 ### Goal Tracker
 
+![build](https://travis-ci.org/RachelKoldenhoven/goal-tracker.svg?branch=master)
+
 This is a work-in-progress app I am building for research that includes:
 - React/Redux
 - [Enzyme shallow testing](https://airbnb.io/enzyme/docs/api/shallow.html)
