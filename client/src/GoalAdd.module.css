@@ -1,0 +1,23 @@
+.GoalAdd {
+    background-color: #EFEEE0;
+    color: #372010;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.onCancel {
+    background-color: #D3A52E;
+    color: #EFEEE0;
+}
+
+.onSave {
+    background-color: #409D69;
+    color: #EFEEE0;
+}
+
+input, button {
+    margin: 15px;
+}
