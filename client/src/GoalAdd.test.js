@@ -11,7 +11,7 @@ describe('GoalAdd', () => {
 
         // Assert
         expect(goalAddWrapper.find({name: 'name'})).toHaveLength(1);
-        expect(goalAddWrapper.find('button').text()).toEqual('Save Goal');
+        expect(goalAddWrapper.find('button').at(0).text()).toEqual('Save Goal');
     });
 
     it('should edit the new goal', () => {

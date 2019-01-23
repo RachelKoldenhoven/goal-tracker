@@ -1,7 +1,9 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
+import {push as pushRoute} from "redux-first-routing";
 
 import {saveGoal} from './mainActions';
+import styles from './GoalAdd.module.css';
 
 export class GoalAdd extends Component {
     constructor(props) {
@@ -28,14 +30,23 @@ export class GoalAdd extends Component {
 
     render() {
         return (
-            <div className="GoalAdd">
-                <p>Add a goal</p>
-                <input onChange={this.onChange}
-                       name="name"
-                       value={this.state.name}/>
+            <div className={styles["GoalAdd"]}>
+                <h3>Add a goal</h3>
+                <label>
+                    Goal:
+                    <input onChange={this.onChange}
+                           name="name"
+                           value={this.state.name}/>
+                </label>
                 <button name="save"
+                        className={styles["onSave"]}
                         onClick={() => this.onSave(this.state.name)}>
                     Save Goal
+                </button>
+                <button name="cancel"
+                        className={styles["onCancel"]}
+                        onClick={() => this.props.onCancel()}>
+                    Cancel
                 </button>
             </div>
         )
@@ -44,7 +55,8 @@ export class GoalAdd extends Component {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        saveGoal: (goal) => dispatch(saveGoal(goal))
+        saveGoal: (goal) => dispatch(saveGoal(goal)),
+        onCancel: () => dispatch(pushRoute('/'))
     }
 };
 
